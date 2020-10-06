@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(opengl_experiments C)
+project(glfw-project C)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -14,6 +14,6 @@ add_library(glad "libs/glad/glad.c")
 target_include_directories(glad PUBLIC "libs" "libs/glad")
 
 # Setup executable
-add_executable(opengl_experiments "src/main.c")
-target_include_directories(opengl_experiments PUBLIC "src")
-target_link_libraries(opengl_experiments PRIVATE "glad" "glfw")
+add_executable(glfw-project "src/main.c")
+target_include_directories(glfw-project PUBLIC "src")
+target_link_libraries(glfw-project PRIVATE "glad" "glfw")
