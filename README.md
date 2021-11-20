@@ -1,4 +1,4 @@
-# GLFWCMakeTemplate
+# GLFW CMake Template
 
 A simple template for a C application using GLFW with GLAD and CMake.
 
