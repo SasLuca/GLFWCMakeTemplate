@@ -1,19 +1,20 @@
 cmake_minimum_required(VERSION 3.17)
-project(glfw-project C)
+project(MyProject C)
 
-set(CMAKE_C_STANDARD 99)
+# Setup libraries
+include(FetchContent)
+FetchContent_Declare(glfw GIT_REPOSITORY https://github.com/glfw/glfw.git GIT_TAG master)
+FetchContent_Declare(glad GIT_REPOSITORY https://github.com/SasLuca/MyGlad.git GIT_TAG master)
 
-# Setup GLFW
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-add_subdirectory(libs/glfw EXCLUDE_FROM_ALL)
+FetchContent_MakeAvailable(glfw)
 
-# Setup GLAD
-add_library(glad "libs/glad/glad.c")
-target_include_directories(glad PUBLIC "libs" "libs/glad")
+FetchContent_MakeAvailable(glad)
 
 # Setup executable
-add_executable(glfw-project "src/main.c")
-target_include_directories(glfw-project PUBLIC "src")
-target_link_libraries(glfw-project PRIVATE "glad" "glfw")
+add_executable(${PROJECT_NAME} "sources/main.c")
+target_include_directories(${PROJECT_NAME} PUBLIC "source")
+target_link_libraries(${PROJECT_NAME} PRIVATE glad glfw)
+set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 99)
